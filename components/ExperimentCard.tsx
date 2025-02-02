@@ -26,7 +26,7 @@ export default function ExperimentCard({
   return (
     <Link
       href={`/${slug}`}
-      className="group card bg-base-100 p-4 transition-all hover:-translate-y-1 hover:shadow-xl"
+      className="group card bg-base-100 p-4 transition-all hover:-translate-y-0.5 hover:shadow-lg"
     >
       {/* Preview Image Container */}
       <div className="relative mb-4 aspect-square overflow-hidden rounded-box bg-base-200">
@@ -36,7 +36,7 @@ export default function ExperimentCard({
               src={image}
               alt={title}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-110"
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </figure>
