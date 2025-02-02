@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${MontserratFont.className} `}>
-      <body className="flex min-h-dvh flex-col bg-base-100 text-base-content antialiased">
+      <body className="flex min-h-dvh flex-col bg-base-200 text-base-content antialiased">
         <Navbar />
         <main className="relative grow">{children}</main>
       </body>

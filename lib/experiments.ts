@@ -6,7 +6,7 @@ export type ExperimentMetadata = {
   description: string
   date: Date
   image?: string // Path to preview image
-  tags?: string[]
+  tags?: Tag[]
 }
 export type Experiment = ExperimentMetadata & {
   slug: string
@@ -25,3 +25,5 @@ export const getExperiments = async (): Promise<Experiment[]> => {
 
   return experiments.sort((a, b) => b.date.getTime() - a.date.getTime())
 }
+
+export type Tag = "Material" | "Animation" | "Interactive"

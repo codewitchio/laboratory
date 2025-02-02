@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: forest --default;
-  /* I love lemonade but I think a dark background is better for 3d scenes */
+  themes: lemonade --default;
+  /* themes: forest --default; */
+  /* I love lemonade but maybe a dark background is better for 3d scenes? */
 }
 
 @theme {
