@@ -63,6 +63,7 @@ export function Cube() {
       onClick={() => setClicked(!clicked)}
     >
       <boxGeometry />
+      {/* TODO: Look into adding the type to ThreeElements, after moving the material to its own file: https://github.com/pmndrs/leva */}
       {/* @ts-expect-error React doesn't know we used extend */}
       <colorShiftMaterial
         color="#664BAF"
