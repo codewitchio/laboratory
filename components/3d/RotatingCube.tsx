@@ -29,7 +29,7 @@ export function RotatingCube() {
       ref={mesh}
       position={[0, 0, 0]}
       onClick={() => setClicked(!clicked)}
-      //@ts-ignore
+      //@ts-expect-error - rotation is a SpringValue
       rotation={rotation}
     >
       <boxGeometry />
