@@ -5,7 +5,7 @@ import "./globals.css"
 
 const MontserratFont = Montserrat({
   subsets: ["latin"],
-  preload: false,
+  preload: true,
 })
 
 export const metadata: Metadata = {

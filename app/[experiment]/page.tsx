@@ -1,7 +1,7 @@
+import LoadingIndicator from "@/components/LoadingIndicator"
 import { getExperiments } from "@/lib/experiments"
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
-
 interface PageProps {
   params: { experiment: string }
 }
@@ -28,9 +28,7 @@ export default function ExperimentPage({ params }: PageProps) {
   const ExperimentComponent = dynamic(
     () => import(`@/experiments/${params.experiment}/page`),
     {
-      // TODO: Add loader component
-      //   loading: () => <LoadingFallback />,
-      loading: () => <div />,
+      loading: () => <LoadingIndicator />,
       ssr: false, // Disable SSR for WebGL/Three.js compatibility
     }
   )
