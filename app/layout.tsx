@@ -11,6 +11,10 @@ const MontserratFont = Montserrat({
 export const metadata: Metadata = {
   title: "codewitch's laboratory",
   description: "A collection of magical experiments",
+  appleWebApp: {
+    title: "codewitch's laboratory",
+    // statusBarStyle: "black-translucent",
+  },
 }
 
 export default function RootLayout({
@@ -20,6 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${MontserratFont.className} `}>
+      {/* <meta name="apple-mobile-web-app-title" content="MyWebSite" /> */}
       <body className="flex min-h-dvh flex-col bg-base-200 text-base-content antialiased">
         <Navbar />
         <main className="relative grow">{children}</main>
