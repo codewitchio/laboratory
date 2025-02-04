@@ -1,10 +1,7 @@
 import type { Experiment } from "@/lib/experiments"
 import Image from "next/image"
 import Link from "next/link"
-
-interface ExperimentCardProps extends Experiment {
-  className?: string
-}
+import { CSSProperties } from "react"
 
 // Add date formatting utility
 const formatDate = (date: Date) => {
@@ -15,18 +12,20 @@ const formatDate = (date: Date) => {
   }).format(date)
 }
 
-export default function ExperimentCard({
+export function ExperimentCard({
   slug,
   title,
   description,
   date,
   image,
   tags = [],
-}: ExperimentCardProps) {
+  style,
+}: Experiment & { style: CSSProperties }) {
   return (
     <Link
+      style={style}
       href={`/${slug}`}
-      className="group card bg-base-100 p-4 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+      className="group card bg-base-100 p-4 transition-shadow hover:shadow-lg"
     >
       {/* Preview Image Container */}
       <div className="relative mb-4 aspect-square overflow-hidden rounded-box bg-base-200">
