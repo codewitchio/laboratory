@@ -47,14 +47,14 @@ export const ExperimentCard = forwardRef<HTMLAnchorElement, Experiment>(
 
         <div className="card-body p-0">
           {/* Title */}
-          <h2 className="card-title text-xl">{title}</h2>
+          <h2 className="card-title text-xl font-light">{title}</h2>
 
           {/* Description */}
-          <p className="line-clamp-2 text-sm text-base-content/70">
+          <p className="-mt-1 mb-1 line-clamp-2 text-sm text-base-content/70">
             {description}
           </p>
 
-          {/* Tags Row */}
+          {/* Bottom Row */}
           <div className="card-actions justify-start">
             {tags.map((tag) => (
               <div key={tag} className="badge badge-ghost badge-sm">

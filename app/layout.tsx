@@ -29,7 +29,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-dvh flex-col antialiased">
         <Navbar />
-        <main className="relative grow">{children}</main>
+        <main className="relative grow pb-8">{children}</main>
       </body>
     </html>
   )

@@ -1,25 +1,26 @@
+import Image from "next/image"
 import Link from "next/link"
 
 export function Navbar() {
   return (
-    <nav className="fixed top-0 right-0 left-0 z-50 w-page navbar px-4 sm:px-6 lg:px-8">
-      <div className="flex w-full items-center justify-center">
-        <Link href="/" className="text-xl normal-case link-hover">
-          codewitch's laboratory
-        </Link>
-        {/* TODO: Add subtitle based on page/route */}
-
-        {/* <ul className="menu menu-horizontal gap-4 px-1">
-          <li>
-            <Link
-              href="https://github.com/codewitchio/laboratory"
-              className="font-medium text-base-content link-hover"
-            >
-              Github
-            </Link>
-          </li>
-        </ul> */}
-      </div>
+    <nav className="card relative z-50 m-auto my-4 flex flex-row bg-base-100 p-2 px-6">
+      {/* TODO: The antialiasing on the hover scaling doesn't look amazing */}
+      {/* TODO: Only show back button when on non-home pages */}
+      <Link
+        href="/"
+        className="me-2 flex cursor-pointer transition-all hover:scale-110"
+      >
+        <Image
+          src="icons/arrow-small-left.svg"
+          alt="Back"
+          width={24}
+          height={24}
+        />
+      </Link>
+      <Link href="/" className="text-xl font-light normal-case link-hover">
+        codewitch's laboratory
+      </Link>
+      {/* TODO: Add subtitle based on page/route */}
     </nav>
   )
 }

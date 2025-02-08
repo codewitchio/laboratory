@@ -19,7 +19,7 @@ export default function ExperimentList(props: { experiments: Experiment[] }) {
 
   return (
     <motion.div
-      className="w-page grid gap-6 p-6 pt-20 md:grid-cols-2 lg:grid-cols-3"
+      className="w-page grid gap-6 md:grid-cols-2 lg:grid-cols-3"
       transition={{ staggerChildren: 0.1 }}
       // Setting these on the parent propagates them to the children, with a staggered delay
       initial="hidden"
