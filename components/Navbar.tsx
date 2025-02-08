@@ -16,7 +16,6 @@ export function Navbar() {
       className="card relative z-50 m-auto my-4 flex flex-row bg-base-100 p-2 px-6"
     >
       <AnimatePresence initial={false}>
-        {/* TODO: Add hover animation */}
         {!isHomePage && (
           <AnimatedLink
             href="/"
@@ -25,6 +24,7 @@ export function Navbar() {
             initial={{ opacity: 0, width: 0, marginRight: 0 }}
             animate={{ opacity: 1, width: "auto", marginRight: 8 }}
             exit={{ opacity: 0, width: 0, marginRight: 0 }}
+            whileHover={{ scale: 1.1 }}
             key="back-button"
           >
             <Image
