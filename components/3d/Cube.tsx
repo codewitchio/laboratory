@@ -3,11 +3,16 @@
 import { useFloatAnimation } from "@/lib/three/animations"
 import { shaderMaterial } from "@react-three/drei"
 import { extend, useFrame } from "@react-three/fiber"
+import { useControls } from "leva"
 import { useMemo, useRef } from "react"
 import { Color, Mesh } from "three"
 
 export function Cube() {
   const mesh = useRef<Mesh>(null)
+
+  const { color } = useControls({
+    color: "#664BAF",
+  })
 
   useFloatAnimation({
     object: mesh,
@@ -60,8 +65,7 @@ export function Cube() {
       {/* TODO: Look into adding the type to ThreeElements, after moving the material to its own file: https://github.com/pmndrs/leva */}
       {/* @ts-expect-error React doesn't know we used extend */}
       <colorShiftMaterial
-        // TODO: Set colour from leva/useControls
-        color="#664BAF"
+        color={color}
         time={1}
         ref={colorShiftMaterial}
         key={ColorShiftMaterial.key}

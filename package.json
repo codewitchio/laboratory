@@ -15,6 +15,7 @@
     "@react-three/drei": "^9.120.5",
     "@react-three/fiber": "^8.17.14",
     "framer-motion-3d": "^12.4.1",
+    "leva": "^0.10.0",
     "motion": "^12.4.1",
     "next": "14.2.22",
     "react": "^18",
