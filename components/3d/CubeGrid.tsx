@@ -76,6 +76,12 @@ export function CubeGrid() {
   )
 
   useEffect(() => {
+    // Check if the mouse pointer is already over the canvas (or document.body if no canvas exists)
+    const interactiveElement = document.querySelector("canvas") || document.body
+    if (interactiveElement.matches(":hover")) {
+      handlePointerEnter()
+    }
+
     window.addEventListener("pointerover", handlePointerEnter)
     window.addEventListener("pointerout", handlePointerLeave)
     window.addEventListener("pointermove", handlePointerMove)
