@@ -37,6 +37,12 @@ export function CubeGrid() {
     })
   }, [api])
 
+  // For use in handlePointerMove
+  const mouseVec = new Vector2()
+  const intersection = new Vector3()
+  const cubePos = new Vector3()
+  const cubeColor = new Color()
+
   const handlePointerMove = useCallback(
     (e: MouseEvent) => {
       if (!isOver.current) return
@@ -44,19 +50,19 @@ export function CubeGrid() {
       // Get mouse coordinates in normalized device coordinates
       const mouseX = (e.offsetX / size.width) * 2 - 1
       const mouseY = (e.offsetY / size.height) * -2 + 1
+      mouseVec.set(mouseX, mouseY)
 
       // Calculate 3D intersection point
-      const mouseVec = new Vector2(mouseX, mouseY)
       raycaster.current.setFromCamera(mouseVec, camera)
-      const intersection = new Vector3()
       raycaster.current.ray.intersectPlane(plane.current, intersection)
 
       api.start((index) => {
         const { x, y } = indexToXY(index)
-        const cubePos = new Vector3(
+        // I'm sure we won't have to do this if we have a proper instantiation setup
+        cubePos.set(
           x - GRID_SIZE / 2,
           y - GRID_SIZE / 2,
-          0 // Local position (group is at z: -5)
+          -5 // Local position (group is at z: -5)
         )
 
         // Calculate true 3D distance
@@ -64,7 +70,7 @@ export function CubeGrid() {
         const normalizedDistance = Math.min(distance / 12, 1) // Adjust divisor for sensitivity
 
         const hue = 120 * normalizedDistance // 120º (green)
-        const color = new Color().setHSL(hue / 360, 1, 0.5).getHexString()
+        const color = cubeColor.setHSL(hue / 360, 1, 0.5).getHexString()
 
         return {
           scale: Math.max(1, Math.min(1.25, 1.5 - normalizedDistance)),
