@@ -1,7 +1,9 @@
 import LoadingIndicator from "@/components/LoadingIndicator"
 import { getExperiments } from "@/lib/experiments"
+import { buildPageTitle } from "@/lib/metadata"
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
+
 interface PageProps {
   params: { experiment: string }
 }
@@ -19,12 +21,16 @@ export async function generateMetadata({ params }: PageProps) {
     return notFound()
   }
   return {
-    title: `${experiment.title} | codewitch's laboratory`,
+    title: buildPageTitle(experiment.title),
     description: experiment.description,
   }
 }
 
-export default function ExperimentPage({ params }: PageProps) {
+export default function ExperimentPage({
+  params,
+}: {
+  params: { experiment: string }
+}) {
   const ExperimentComponent = dynamic(
     () => import(`@/experiments/${params.experiment}/page`),
     {
