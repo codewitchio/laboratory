@@ -23,7 +23,12 @@ export const getExperiments = async (): Promise<Experiment[]> => {
     })
   )
 
-  return experiments.sort((a, b) => b.date.getTime() - a.date.getTime())
+  // Sort experiments by date descending
+  const sortedExperiments = experiments.sort(
+    (a, b) => b.date.getTime() - a.date.getTime()
+  )
+
+  return sortedExperiments
 }
 
 export type Tag = "Material" | "Animation" | "Interactive"
