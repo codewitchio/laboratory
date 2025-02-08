@@ -32,6 +32,7 @@ export function Navbar() {
               alt="Back"
               width={24}
               height={24}
+              priority
             />
           </AnimatedLink>
         )}
