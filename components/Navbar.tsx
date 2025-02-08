@@ -26,6 +26,9 @@ export function Navbar() {
   return (
     <motion.nav
       layout
+      initial={{ opacity: 0, y: -5 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3, duration: 0.3 }}
       className="card relative z-50 m-auto my-4 flex flex-row items-baseline bg-base-100 p-2 px-6"
     >
       <AnimatePresence initial={false}>
@@ -50,13 +53,13 @@ export function Navbar() {
             />
           </AnimatedLink>
         )}
-        <span className="text-lg font-light" key="main-title">
+        <span className="text-lg font-light select-none" key="main-title">
           codewitch's laboratory
         </span>
         {experimentTitle && (
           <motion.span
             key={experimentTitle}
-            className="overflow-hidden text-sm font-light text-nowrap text-subtle"
+            className="overflow-hidden text-sm font-light text-nowrap text-subtle select-none"
             initial={{ opacity: 0, width: 0, marginLeft: 0 }}
             animate={{ opacity: 1, width: "auto", marginLeft: 8 }}
             exit={{ opacity: 0, width: 0, marginLeft: 0 }}
