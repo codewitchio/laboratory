@@ -50,7 +50,7 @@ export const ExperimentCard = forwardRef<HTMLAnchorElement, Experiment>(
           <h2 className="card-title text-xl font-light">{title}</h2>
 
           {/* Description */}
-          <p className="-mt-1 mb-1 line-clamp-2 text-sm text-base-content/70">
+          <p className="-mt-1 mb-1 line-clamp-2 text-sm text-subtle">
             {description}
           </p>
 
@@ -62,7 +62,7 @@ export const ExperimentCard = forwardRef<HTMLAnchorElement, Experiment>(
               </div>
             ))}
             {/* Date */}
-            <time className="ml-auto text-sm text-base-content/50">
+            <time className="ml-auto text-sm text-subtler">
               {formatDate(date)}
             </time>
           </div>
