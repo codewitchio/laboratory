@@ -11,10 +11,6 @@ const MontserratFont = Montserrat({
 export const metadata: Metadata = {
   title: "codewitch's laboratory",
   description: "A collection of magical experiments",
-  appleWebApp: {
-    title: "codewitch's laboratory",
-    // statusBarStyle: "black-translucent",
-  },
 }
 
 export default function RootLayout({

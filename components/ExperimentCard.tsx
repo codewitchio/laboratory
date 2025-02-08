@@ -26,15 +26,13 @@ export const ExperimentCard = forwardRef<HTMLAnchorElement, Experiment>(
         {/* Preview Image Container */}
         <div className="relative mb-4 aspect-square overflow-hidden rounded-box bg-base-200">
           {image ? (
-            <figure>
-              <Image
-                src={image}
-                alt={title}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            </figure>
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
           ) : (
             <figure className="h-full w-full bg-base-200" />
           )}

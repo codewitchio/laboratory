@@ -12,7 +12,7 @@ const itemVariants = {
     transition: { type: "spring", stiffness: 100, damping: 20 },
   },
 }
-const AnimatedExperimentCard = motion(ExperimentCard)
+const AnimatedExperimentCard = motion.create(ExperimentCard)
 
 export default function ExperimentList(props: { experiments: Experiment[] }) {
   const { experiments } = props
@@ -30,6 +30,7 @@ export default function ExperimentList(props: { experiments: Experiment[] }) {
           key={exp.slug}
           whileHover={{ y: -5 }}
           variants={itemVariants}
+          style={{ opacity: 0 }}
           {...exp}
         />
       ))}
