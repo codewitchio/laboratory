@@ -23,9 +23,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${MontserratFont.className} `}>
-      {/* <meta name="apple-mobile-web-app-title" content="MyWebSite" /> */}
-      <body className="flex min-h-dvh flex-col bg-base-200 text-base-content antialiased">
+    <html
+      lang="en"
+      className={`${MontserratFont.className} bg-base-200 text-base-content`}
+    >
+      <body className="flex min-h-dvh flex-col antialiased">
         <Navbar />
         <main className="relative grow">{children}</main>
       </body>
