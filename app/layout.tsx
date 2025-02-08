@@ -11,6 +11,7 @@ const MontserratFont = Montserrat({
 export const metadata: Metadata = {
   title: "codewitch's laboratory",
   description: "A collection of magical experiments",
+  themeColor: "#E1E6D9", // Lemonade theme bg-base-200
 }
 
 export default function RootLayout({
