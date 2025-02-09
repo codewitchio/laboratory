@@ -1,5 +1,5 @@
 import LoadingIndicator from "@/components/LoadingIndicator"
-import { PerspectiveCamera, Stats } from "@react-three/drei"
+import { PerspectiveCamera } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 
@@ -16,7 +16,7 @@ export default function DefaultCanvas({
         <directionalLight position={[5, 5, 5]} intensity={2} />
         {children}
         {/* Add useControls toggle for this? */}
-        <Stats />
+        {/* <Stats /> */}
       </Canvas>
     </Suspense>
   )
