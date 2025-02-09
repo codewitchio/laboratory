@@ -15,11 +15,10 @@ export function Navbar() {
   const [experimentTitle, setExperimentTitle] = useState<string>("")
 
   useEffect(() => {
-    if (typeof document !== undefined) {
-      setExperimentTitle(
-        document.title !== HOME_TITLE ? extractPageTitle(document.title) : ""
-      )
-    }
+    // document is always defined in effects since they only run on the client
+    setExperimentTitle(
+      document.title !== HOME_TITLE ? extractPageTitle(document.title) : ""
+    )
   }, [pathname])
 
   // Note to self: If I end up not keeping this, turn it into an experiment page. It looks super nice, even if I'm unsure this is how I want it to work.

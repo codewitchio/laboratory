@@ -12,6 +12,12 @@ const indexToXY = (index: number) => {
   return { x: i, y: j }
 }
 
+// For use in handlePointerMove
+const mouseVec = new Vector2()
+const intersection = new Vector3()
+const cubePos = new Vector3()
+const cubeColor = new Color()
+
 export function CubeGrid() {
   const isOver = useRef(false)
   const { size, camera } = useThree((state) => state)
@@ -36,12 +42,6 @@ export function CubeGrid() {
       color: "#00ff00", // Reset color to green
     })
   }, [api])
-
-  // For use in handlePointerMove
-  const mouseVec = new Vector2()
-  const intersection = new Vector3()
-  const cubePos = new Vector3()
-  const cubeColor = new Color()
 
   const handlePointerMove = useCallback(
     (e: MouseEvent) => {
