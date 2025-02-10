@@ -73,7 +73,7 @@ export function CubeGrid() {
           temp.position.set(x - GRID_SIZE / 2, y - GRID_SIZE / 2, 0)
           temp.updateMatrix()
           const distance = temp.position.distanceTo(intersection.point)
-          const normalizedDistance = Math.min(distance / 50, 1) // Adjust divisor for sensitivity
+          const normalizedDistance = Math.min(distance / 25, 1) // Adjust divisor for sensitivity
 
           const hue = 120 * normalizedDistance // 120º (green)
           cubeColor.setHSL(hue / 360, 1, 0.5)
