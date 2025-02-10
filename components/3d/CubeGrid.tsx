@@ -1,16 +1,9 @@
 "use client"
 
 import { useThree } from "@react-three/fiber"
+import { useControls } from "leva"
 import { MutableRefObject, useCallback, useEffect, useRef } from "react"
-import {
-  Color,
-  InstancedMesh,
-  Object3D,
-  Plane,
-  Raycaster,
-  Vector2,
-  Vector3,
-} from "three"
+import { Color, InstancedMesh, Mesh, Object3D, Raycaster, Vector2 } from "three"
 
 const GRID_SIZE = 100
 const count = GRID_SIZE * GRID_SIZE
@@ -24,17 +17,22 @@ const indexToXY = (index: number) => {
 
 // For use in handlePointerMove
 const mouseVec = new Vector2()
-const intersection = new Vector3()
 const cubeColor = new Color()
 const temp = new Object3D()
 
 export function CubeGrid() {
   const isOver = useRef(false)
   const { size, camera } = useThree((state) => state)
-  const instancedMeshRef = useRef<InstancedMesh>(null!)
 
+  const { showIntersectionPoint, showIntersectionPlane } = useControls({
+    showIntersectionPoint: false,
+    showIntersectionPlane: false,
+  })
+
+  const instancedMeshRef = useRef<InstancedMesh>(null!)
+  const intersectionPointMeshRef = useRef<Mesh>(null!)
+  const intersectionPlaneMeshRef = useRef<Mesh>(null!)
   const raycaster = useRef(new Raycaster())
-  const plane = useRef(new Plane(new Vector3(0, 0, 1), 3)) // Correct constant for z = -5
 
   const handlePointerEnter = useCallback(() => {
     isOver.current = true
@@ -56,30 +54,46 @@ export function CubeGrid() {
 
       // Calculate 3D intersection point
       raycaster.current.setFromCamera(mouseVec, camera)
-      raycaster.current.ray.intersectPlane(plane.current, intersection)
+      const intersections = raycaster.current.intersectObject(
+        intersectionPlaneMeshRef.current
+      )
 
-      for (let i = 0; i < count; i++) {
-        instancedMeshRef.current.getMatrixAt(i, temp.matrix)
-        const distance = temp.position.distanceTo(intersection)
-        const normalizedDistance = Math.min(distance / 12, 1) // Adjust divisor for sensitivity
+      if (intersections.length > 0) {
+        const intersection = intersections[0]
+        // Update helper mesh
+        if (showIntersectionPoint) {
+          intersectionPointMeshRef.current.position.x = intersection.point.x
+          intersectionPointMeshRef.current.position.y = intersection.point.y
+          intersectionPointMeshRef.current.position.z = intersection.point.z
+        }
 
-        const hue = 120 * normalizedDistance // 120º (green)
-        cubeColor.setHSL(hue / 360, 1, 0.5)
+        // Update all cubes
+        for (let i = 0; i < count; i++) {
+          const { x, y } = indexToXY(i)
+          temp.position.set(x - GRID_SIZE / 2, y - GRID_SIZE / 2, 0)
+          temp.updateMatrix()
+          const distance = temp.position.distanceTo(intersection.point)
+          const normalizedDistance = Math.min(distance / 50, 1) // Adjust divisor for sensitivity
 
-        const scale = Math.max(1, Math.min(1.25, 1.5 - normalizedDistance))
-        temp.scale.set(scale, scale, scale)
+          const hue = 120 * normalizedDistance // 120º (green)
+          cubeColor.setHSL(hue / 360, 1, 0.5)
 
-        const { x, y } = indexToXY(i)
-        temp.position.set(x - GRID_SIZE / 2, y - GRID_SIZE / 2, 0)
-        temp.updateMatrix()
+          // TODO: Add exponential falloff
+          const scale = Math.max(1, Math.min(1.25, 1.5 - normalizedDistance))
+          temp.scale.set(scale, scale, scale)
 
-        instancedMeshRef.current.setMatrixAt(i, temp.matrix)
-        instancedMeshRef.current.setColorAt(i, cubeColor)
+          temp.position.set(x - GRID_SIZE / 2, y - GRID_SIZE / 2, 0)
+          temp.updateMatrix()
+          instancedMeshRef.current.setMatrixAt(i, temp.matrix)
+          instancedMeshRef.current.setColorAt(i, cubeColor)
+        }
+        instancedMeshRef.current.instanceMatrix.needsUpdate = true
+        instancedMeshRef.current.instanceColor!.needsUpdate = true
+      } else {
+        setCubesToDefault(instancedMeshRef)
       }
-      instancedMeshRef.current.instanceMatrix.needsUpdate = true
-      instancedMeshRef.current.instanceColor!.needsUpdate = true
     },
-    [size, camera]
+    [size, camera, showIntersectionPoint]
   )
 
   useEffect(() => {
@@ -107,8 +121,25 @@ export function CubeGrid() {
 
   return (
     <>
-      {/* <planeHelper args={[plane.current, 100, 0x33333]} /> */}
-      <group rotation={[-0.5, 0, 0]} position={[0, 0, -15]}>
+      {/* Intersection point */}
+      <mesh
+        ref={intersectionPointMeshRef}
+        rotation={[0.5, 0, 0]}
+        visible={showIntersectionPoint}
+      >
+        {/* <sphereGeometry args={[0.1]} /> */}
+        <cylinderGeometry args={[0.1, 0.01, 5]} />
+        <meshStandardMaterial color="red" />
+      </mesh>
+      <group rotation={[-0.5, 0, 0]} position={[0, 0, 0]}>
+        <mesh
+          position={[0, 0, 0]}
+          visible={showIntersectionPlane}
+          ref={intersectionPlaneMeshRef}
+        >
+          <planeGeometry args={[GRID_SIZE, GRID_SIZE]} />
+          <meshBasicMaterial transparent opacity={0.75} color="red" />
+        </mesh>
         <instancedMesh
           ref={instancedMeshRef}
           args={[undefined, undefined, count]}
