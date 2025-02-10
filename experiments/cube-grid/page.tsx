@@ -5,7 +5,7 @@ import DefaultCanvas from "@/components/3d/DefaultCanvas"
 
 export default function CubeGriPage() {
   return (
-    <DefaultCanvas>
+    <DefaultCanvas cameraPosition={[0, 0, 25]} bounds={false}>
       <CubeGrid />
     </DefaultCanvas>
   )
