@@ -2,11 +2,10 @@ import { ExperimentMetadata } from "@/lib/experiments"
 
 const metadata: ExperimentMetadata = {
   title: "Cube Grid",
-  description:
-    "Mostly an experiment to learn about raycasting from mouse position.",
-  date: new Date("2025-02-02"),
+  description: "An experiment to learn about raycasting and instanced meshes.",
+  date: new Date("2025-02-10"),
   image:
-    "https://gn2layagbk.ufs.sh/f/NSePd22zeSwEmXFIQR27OuvX57JDojEUhTWpk1NC9wrt2HxM",
+    "https://gn2layagbk.ufs.sh/f/NSePd22zeSwEJc9qzLV09SO82rq5nc1fPsxYpmtALloU3QDK",
   tags: ["Interactive"],
 }
 export default metadata
