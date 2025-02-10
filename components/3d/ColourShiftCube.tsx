@@ -7,7 +7,7 @@ import { useControls } from "leva"
 import { useMemo, useRef } from "react"
 import { Color, Mesh } from "three"
 
-export function Cube() {
+export function ColourShiftCube() {
   const mesh = useRef<Mesh>(null)
 
   const { color } = useControls({
