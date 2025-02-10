@@ -70,19 +70,25 @@ export function CubeGrid() {
         // Update all cubes
         for (let i = 0; i < count; i++) {
           const { x, y } = indexToXY(i)
-          temp.position.set(x - GRID_SIZE / 2, y - GRID_SIZE / 2, 0)
+
+          // Assign cube position to temp object
+          instancedMeshRef.current.getMatrixAt(i, temp.matrix)
           temp.updateMatrix()
+
+          // Calculate distance between cube and intersection point
           const distance = temp.position.distanceTo(intersection.point)
-          const normalizedDistance = Math.min(distance / 25, 1) // Adjust divisor for sensitivity
+          // Normalize distance to 0-1
+          const normalizedDistance = Math.min(distance / 10, 1) // Adjust divisor for sensitivity
 
-          const hue = 120 * normalizedDistance // 120º (green)
-          cubeColor.setHSL(hue / 360, 1, 0.5)
+          // Set cube color based on distance
+          // #439400 = hsl(93, 100%, 29%)
+          const hue = 93 * normalizedDistance
+          cubeColor.setHSL(hue / 360, 1, 0.29)
 
-          // TODO: Add exponential falloff
-          const scale = Math.max(1, Math.min(1.25, 1.5 - normalizedDistance))
-          temp.scale.set(scale, scale, scale)
+          // Set cube height based on distance
+          const height = Math.max(0, Math.min(1, 0.75 - normalizedDistance)) * 3
 
-          temp.position.set(x - GRID_SIZE / 2, y - GRID_SIZE / 2, 0)
+          temp.position.set(x - GRID_SIZE / 2, y - GRID_SIZE / 2, height)
           temp.updateMatrix()
           instancedMeshRef.current.setMatrixAt(i, temp.matrix)
           instancedMeshRef.current.setColorAt(i, cubeColor)
@@ -127,8 +133,7 @@ export function CubeGrid() {
         rotation={[0.5, 0, 0]}
         visible={showIntersectionPoint}
       >
-        {/* <sphereGeometry args={[0.1]} /> */}
-        <cylinderGeometry args={[0.1, 0.01, 5]} />
+        <cylinderGeometry args={[0.1, 0.01, 10]} />
         <meshStandardMaterial color="red" />
       </mesh>
       <group rotation={[-0.5, 0, 0]} position={[0, 0, 0]}>
