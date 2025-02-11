@@ -9,7 +9,6 @@ Title: Mushroom Potion
 */
 
 import { useGLTF } from "@react-three/drei"
-import React from "react"
 
 export function Potion(props) {
   const { nodes, materials } = useGLTF("/models/potion-transformed.glb")
@@ -25,4 +24,4 @@ export function Potion(props) {
   )
 }
 
-useGLTF.preload("/scene-transformed.glb")
+useGLTF.preload("/models/potion-transformed.glb")
