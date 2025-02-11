@@ -1,5 +1,6 @@
 "use client"
 
+import { Tooltip } from "@/components/3d/Tooltip"
 import { animated, useSpring } from "@react-spring/three"
 import { motion } from "framer-motion-3d"
 import { useRef, useState } from "react"
@@ -20,7 +21,7 @@ export function RotatingCubeSpring(props: {
 
   const { rotation } = useSpring({
     from: { rotation: [0, 0, 0] },
-    to: { rotation: [0, Math.PI, 0] },
+    to: { rotation: [0, 2 * Math.PI, 0] },
     config: { duration: 10000 },
     loop: true,
     // Reset rotation when loop restarts for smooth animation
@@ -35,6 +36,7 @@ export function RotatingCubeSpring(props: {
       //@ts-expect-error - rotation is a SpringValue
       rotation={rotation}
     >
+      <Tooltip scale={0.2}>Click me!</Tooltip>
       <boxGeometry />
       <animated.meshStandardMaterial color={springs.color} />
     </animated.mesh>
@@ -62,6 +64,7 @@ export function RotatingCubeMotion(props: {
         ease: "linear",
       }}
     >
+      <Tooltip scale={0.2}>Click me!</Tooltip>
       <boxGeometry />
       {/* Animate material color with a smooth transition upon clicks */}
       <motion.meshStandardMaterial
