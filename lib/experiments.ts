@@ -31,4 +31,4 @@ export const getExperiments = async (): Promise<Experiment[]> => {
   return sortedExperiments
 }
 
-export type Tag = "Material" | "Animation" | "Interactive"
+export type Tag = "Material" | "Animation" | "Interactive" | "WIP" | "3D" | "UI"
