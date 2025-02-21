@@ -33,7 +33,6 @@ export function RotatingCubeSpring(props: {
       ref={mesh}
       position={props.position}
       onClick={() => setClicked(!clicked)}
-      //@ts-expect-error - rotation is a SpringValue
       rotation={rotation}
     >
       <Tooltip scale={0.2}>Click me!</Tooltip>

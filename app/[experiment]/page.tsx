@@ -15,8 +15,9 @@ export async function generateStaticParams() {
 
 //  Set metadata
 export async function generateMetadata({ params }: PageProps) {
+  const { experiment: experimentSlug } = await params
   const experiments = await getExperiments()
-  const experiment = experiments.find((exp) => exp.slug === params.experiment)
+  const experiment = experiments.find((exp) => exp.slug === experimentSlug)
   if (!experiment) {
     return notFound()
   }
@@ -26,16 +27,12 @@ export async function generateMetadata({ params }: PageProps) {
   }
 }
 
-export default function ExperimentPage({
-  params,
-}: {
-  params: { experiment: string }
-}) {
+export default async function ExperimentPage({ params }: PageProps) {
+  const { experiment } = await params
   const ExperimentComponent = dynamic(
-    () => import(`@/experiments/${params.experiment}/page`),
+    () => import(`@/experiments/${experiment}/page`),
     {
       loading: () => <LoadingIndicator />,
-      ssr: false, // Disable SSR for WebGL/Three.js compatibility
     }
   )
 
