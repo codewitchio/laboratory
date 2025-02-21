@@ -24,7 +24,6 @@ export function Navbar() {
   // Note to self: If I end up not keeping this, turn it into an experiment page. It looks super nice, even if I'm unsure this is how I want it to work.
   return (
     <motion.nav
-      layout
       initial={{ opacity: 0, y: -5 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.3 }}
