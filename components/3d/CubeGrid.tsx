@@ -2,7 +2,7 @@
 
 import { useThree } from "@react-three/fiber"
 import { useControls } from "leva"
-import { MutableRefObject, useCallback, useEffect, useRef } from "react"
+import { RefObject, useCallback, useEffect, useRef } from "react"
 import { Color, InstancedMesh, Mesh, Object3D, Raycaster, Vector2 } from "three"
 
 const GRID_SIZE = 100
@@ -157,7 +157,7 @@ export function CubeGrid() {
   )
 }
 
-function setCubesToDefault(instancedMeshRef: MutableRefObject<InstancedMesh>) {
+function setCubesToDefault(instancedMeshRef: RefObject<InstancedMesh>) {
   for (let i = 0; i < count; i++) {
     const { x, y } = indexToXY(i)
     temp.position.set(x - GRID_SIZE / 2, y - GRID_SIZE / 2, 0)

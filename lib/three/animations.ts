@@ -3,7 +3,7 @@ import * as THREE from "three"
 import { Object3D } from "three"
 
 type FloatAnimationParams = {
-  object: React.MutableRefObject<Object3D | undefined | null>
+  object: React.RefObject<Object3D | undefined | null>
   active: boolean
   options?: {
     speed?: number
