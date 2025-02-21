@@ -1,3 +1,4 @@
+import { AnimatedBody } from "@/components/Background"
 import { Navbar } from "@/components/Navbar"
 import type { Metadata, Viewport } from "next"
 import { Montserrat } from "next/font/google"
@@ -28,10 +29,10 @@ export default function RootLayout({
       lang="en"
       className={`${MontserratFont.className} bg-base-200 text-base-content`}
     >
-      <body className="flex min-h-dvh flex-col">
+      <AnimatedBody>
         <Navbar />
         {children}
-      </body>
+      </AnimatedBody>
     </html>
   )
 }

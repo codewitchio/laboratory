@@ -20,7 +20,7 @@ export default function ExperimentList(props: { experiments: Experiment[] }) {
   return (
     <motion.div
       className="w-page grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-      transition={{ staggerChildren: 0.1 }}
+      transition={{ staggerChildren: 0.2 }}
       // Setting these on the parent propagates them to the children, with a staggered delay
       initial="hidden"
       animate="visible"
