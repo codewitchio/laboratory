@@ -1,4 +1,4 @@
-import { AnimatedBody } from "@/components/Background"
+import { AnimatedBody } from "@/components/AnimatedBody"
 import { Navbar } from "@/components/Navbar"
 import type { Metadata, Viewport } from "next"
 import { Montserrat } from "next/font/google"
