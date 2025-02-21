@@ -4,9 +4,7 @@ import { buildPageTitle } from "@/lib/metadata"
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
 
-interface PageProps {
-  params: { experiment: string }
-}
+type Params = Promise<{ experiment: string }>
 
 export async function generateStaticParams() {
   const experiments = await getExperiments()
@@ -14,7 +12,7 @@ export async function generateStaticParams() {
 }
 
 //  Set metadata
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: { params: Params }) {
   const { experiment: experimentSlug } = await params
   const experiments = await getExperiments()
   const experiment = experiments.find((exp) => exp.slug === experimentSlug)
@@ -27,8 +25,8 @@ export async function generateMetadata({ params }: PageProps) {
   }
 }
 
-export default async function ExperimentPage({ params }: PageProps) {
-  const { experiment } = await params
+export default async function ExperimentPage(props: { params: Params }) {
+  const { experiment } = await props.params
   const ExperimentComponent = dynamic(
     () => import(`@/experiments/${experiment}/page`),
     {
