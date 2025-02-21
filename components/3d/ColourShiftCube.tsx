@@ -53,7 +53,7 @@ export function ColourShiftCube() {
 
   extend({ ColorShiftMaterial })
 
-  const colorShiftMaterial = useRef()
+  const colorShiftMaterial = useRef<typeof ColorShiftMaterial>(null)
   useFrame((state, delta) => {
     // @ts-expect-error idk why this says "never"
     colorShiftMaterial.current!.time += delta
