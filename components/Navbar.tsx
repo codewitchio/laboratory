@@ -8,6 +8,11 @@ import { useEffect, useState } from "react"
 
 const AnimatedLink = motion.create(Link)
 
+const navVariants = {
+  hidden: { opacity: 0, y: -5 },
+  visible: { opacity: 1, y: 0 },
+}
+
 export function Navbar() {
   const pathname = usePathname()
   const isHomePage = pathname === "/"
@@ -24,9 +29,8 @@ export function Navbar() {
   // Note to self: If I end up not keeping this, turn it into an experiment page. It looks super nice, even if I'm unsure this is how I want it to work.
   return (
     <motion.nav
-      initial={{ opacity: 0, y: -5 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3, duration: 0.3 }}
+      variants={navVariants}
+      transition={{ duration: 0.3 }}
       className="card relative z-50 m-auto my-4 flex flex-row items-baseline bg-base-100 p-2 px-6"
     >
       <AnimatePresence initial={false}>
