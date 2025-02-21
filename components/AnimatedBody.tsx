@@ -39,7 +39,7 @@ export function AnimatedBody(props: { children: React.ReactNode }) {
         initial={{ height: "calc(100% + 300px)" }}
         animate={{ height: 0 }}
         transition={transition}
-        className="absolute w-full"
+        className="absolute z-20 w-full"
         preserveAspectRatio="none"
         onAnimationComplete={() => setHasBodyAnimated(true)}
       >
