@@ -4,7 +4,11 @@ import { AnimatePresence, motion } from "motion/react"
 import Image from "next/image"
 import React, { useState } from "react"
 
+// Heavily based on https://motion.dev/docs/react-animate-presence
+// and https://codesandbox.io/p/sandbox/framer-motion-image-gallery-pqvx3?file=/src/Example.tsx:54,40-54,46&from-embed
+
 export default function Slideshow() {
+  // TODO: Disable buttons if there are no more slides in that direction
   const [currentSlide, setCurrentSlide] = useState(0)
 
   return (
@@ -54,6 +58,7 @@ const slideVariants = {
   exit: { x: "-100%" },
 }
 
+// TODO: Add drag gestures
 function Slide(props: React.ComponentProps<typeof motion.div>) {
   return (
     <motion.div
