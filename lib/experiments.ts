@@ -16,6 +16,8 @@ export const getExperiments = async (): Promise<Experiment[]> => {
   const experimentsDir = path.join(process.cwd(), "experiments")
   const slugs = await readdir(experimentsDir)
 
+  // TODO: Revamp experiments system to actually use page router and only fetch metadata like this
+  // () => import(`@/experiments/${experiment}/page`).then((module) => module.metadata),
   const experiments: Experiment[] = await Promise.all(
     slugs.map(async (slug) => {
       const config = await import(`@/experiments/${slug}/metadata`)

@@ -29,6 +29,8 @@ export default async function ExperimentPage(props: { params: Params }) {
   const { experiment } = await props.params
   const ExperimentComponent = dynamic(
     () => import(`@/experiments/${experiment}/page`),
+    // TODO: Revamp experiments system to actually use page router and only fetch metadata like this
+    // () => import(`@/experiments/${experiment}/page`).then((module) => module.metadata),
     {
       loading: () => <LoadingIndicator />,
     }
