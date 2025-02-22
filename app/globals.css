@@ -39,6 +39,10 @@
   @apply text-base-content/50;
 }
 
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
 @layer components {
   /* Some useful defaults */
   h1 {
