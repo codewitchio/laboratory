@@ -4,7 +4,7 @@ import DefaultCanvas from "@/components/3d/DefaultCanvas"
 import { Book } from "@/experiments/bookshelf/Book"
 import { ContactShadows, Environment } from "@react-three/drei"
 
-const color = "#E1E6D9"
+const color = "#dbe6d9" // Theme bg-base-200
 
 export default function ColorShift() {
   return (

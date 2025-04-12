@@ -1,8 +1,42 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: lemonade --default;
+  themes: codewitch-forest --default;
   /* themes: forest --default; */
   /* I love lemonade but maybe a dark background is better for 3d scenes? */
+}
+@plugin "daisyui/theme" {
+  name: "codewitch-forest";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: #f1fdef;
+  --color-base-200: #dbe6d9;
+  --color-base-300: #c6cfc4;
+  --color-base-content: #141614;
+  --color-primary: #2b6352;
+  --color-primary-content: #f1fdef;
+  --color-secondary: #2b5863;
+  --color-secondary-content: #f1fdef;
+  --color-accent: #94e5d2;
+  --color-accent-content: #19362d;
+  --color-neutral: #19362d;
+  --color-neutral-content: #94e5d2;
+  --color-info: #b1d9e9;
+  --color-info-content: #00445f;
+  --color-success: #b2e4c5;
+  --color-success-content: #004d18;
+  --color-warning: #ffd2a3;
+  --color-warning-content: #693600;
+  --color-error: #ffbdbc;
+  --color-error-content: #771210;
+  --radius-selector: 2rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
 }
 
 /*

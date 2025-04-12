@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#E1E6D9", // Lemonade theme bg-base-200
+  themeColor: "#dbe6d9", // Theme bg-base-200
   colorScheme: "light",
 }
 
