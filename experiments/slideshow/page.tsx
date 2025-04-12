@@ -71,7 +71,7 @@ function Slide(props: React.ComponentProps<typeof motion.div>) {
       initial="enter"
       animate="center"
       exit="exit"
-      className="absolute flex-center size-full"
+      className="absolute flex-center size-full flex-col gap-2"
     >
       {/* Page indicator */}
       <span className="absolute right-4 bottom-4 text-sm font-bold">01</span>
@@ -84,12 +84,23 @@ function Slide(props: React.ComponentProps<typeof motion.div>) {
 
 // TODO: I don't like this solution
 const slides = [
-  <Slide key="1" style={{ backgroundColor: "red" }}>
+  <Slide
+    key="1"
+    style={{
+      backgroundColor: "var(--color-primary)",
+      color: "var(--color-primary-content)",
+    }}
+  >
     <h1>Hanna</h1>
-    <h1>Kjellén</h1>
     <h1>codewitch</h1>
   </Slide>,
-  <Slide key="2" style={{ backgroundColor: "blue" }}>
+  <Slide
+    key="2"
+    style={{
+      backgroundColor: "var(--color-secondary)",
+      color: "var(--color-secondary-content)",
+    }}
+  >
     <h1>test</h1>
   </Slide>,
 ]
